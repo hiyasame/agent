@@ -6,13 +6,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import org.apache.logging.log4j.Logger
-import team.redrock.rain.agent.module.impl.AutoBow
+import team.redrock.rain.agent.module.ModuleManager
 
 @Mod(modid = Agent.MOD_ID, name = Agent.MOD_NAME, version = Agent.VERSION)
 class Agent {
 
     init {
-        MinecraftForge.EVENT_BUS.register(AutoBow())
+        ModuleManager.init()
     }
 
     companion object {
