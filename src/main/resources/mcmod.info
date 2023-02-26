@@ -1,0 +1,16 @@
+[
+    {
+        "modid": "agent",
+        "name": "Agent",
+        "description": "agent for sacredcraft player",
+        "version": "${version}",
+        "mcversion": "${mcversion}",
+        "url": "",
+        "updateUrl": "",
+        "authorList": ["Rain"],
+        "credits": "",
+        "logoFile": "",
+        "screenshots": [],
+        "dependencies": []
+    }
+]
