@@ -2,6 +2,7 @@ package team.redrock.rain.agent.module
 
 import net.minecraftforge.common.MinecraftForge
 import team.redrock.rain.agent.module.impl.AutoBow
+import team.redrock.rain.agent.module.impl.BowAim
 import kotlin.reflect.KClass
 
 /**
@@ -15,14 +16,20 @@ object ModuleManager {
     val modules: HashMap<Class<*>, Module> = hashMapOf()
 
     fun init() {
-        register(AutoBow())
+        listOf(
+            AutoBow(),
+            BowAim()
+        ).forEach {
+            register(it, it.javaClass)
+        }
     }
 
-    inline fun <reified T: Module> register(inst: T) {
-        modules[T::class.java] = inst
+    private fun register(inst: Module, clazz: Class<*>) {
+        modules[clazz] = inst
         // 注册模块中所有事件
         MinecraftForge.EVENT_BUS.register(inst)
     }
+
 }
 
 @Suppress("UNCHECKED_CAST")
