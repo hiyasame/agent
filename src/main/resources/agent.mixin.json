@@ -1,0 +1,10 @@
+{
+  "required": true,
+  "package": "team.redrock.rain.agent",
+  "compatibilityLevel": "JAVA_8",
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "agent.mixin-refmap.json"
+}

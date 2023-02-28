@@ -2,6 +2,7 @@ package team.redrock.rain.agent.module
 
 import net.minecraftforge.common.MinecraftForge
 import team.redrock.rain.agent.module.impl.AutoBow
+import team.redrock.rain.agent.module.impl.AutoSummon
 import team.redrock.rain.agent.module.impl.BowAim
 import kotlin.reflect.KClass
 
@@ -18,7 +19,8 @@ object ModuleManager {
     fun init() {
         listOf(
             AutoBow(),
-            BowAim()
+            BowAim(),
+            AutoSummon()
         ).forEach {
             register(it, it.javaClass)
         }

@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.EnumCreatureType
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemBow
+import net.minecraft.pathfinding.PathFinder
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 import net.minecraftforge.fml.common.registry.EntityRegistry

@@ -1,3 +1,19 @@
+buildscript {
+    repositories {
+        maven {
+            name = 'forge'
+            url = 'https://files.minecraftforge.net/maven'
+        }
+        maven {
+            name = 'SpongePowered'
+            url = 'https://repo.spongepowered.org/repository/maven-public/'
+        }
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+
 plugins {
     id 'net.minecraftforge.gradle' version '5.1.+'
     // Adds the Kotlin Gradle plugin
@@ -5,6 +21,8 @@ plugins {
     // shadowJar
     id "com.github.johnrengelman.shadow" version '7.0.0'
 }
+
+//apply plugin: 'org.spongepowered.mixin'
 
 group = 'team.redrock.rain'
 version = '1.0-SNAPSHOT'
@@ -55,6 +73,7 @@ minecraft {
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
 
+            arg "-mixin.config=agent.mixin.json"
 
             mods {
                 agent {
@@ -88,9 +107,9 @@ repositories {
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so:
-    // flatDir {
-    //     dir 'libs'
-    // }
+//     flatDir {
+//         dir 'libs'
+//     }
 }
 
 dependencies {
@@ -104,6 +123,9 @@ dependencies {
     // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}") // Adds the full JEI mod as a runtime dependency
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlin_version}"
+    compileOnly fileTree("libs")
+
+//    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // Examples using mod jars from ./libs
     // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
@@ -116,6 +138,7 @@ dependencies {
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
+        rename 'mixin.refmap.json', 'agent.mixin-refmap.json'
         attributes([
                 "Specification-Title"     : "agent",
                 "Specification-Vendor"    : "Rain",
@@ -123,7 +146,10 @@ jar {
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "Rain",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+//                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
+//                "TweakOrder"              : 0,
+//                "MixinConfigs"            : "agent.mixin.json"
         ])
     }
 }

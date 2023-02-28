@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase
  * @since 2023/2/27 下午7:19
  */
 fun EntityLivingBase.getLocation(): Location {
-    return Location(world.providerName, posX, posY, posZ, pitchYaw.y, pitchYaw.x)
+    return Location(null, posX, posY, posZ, pitchYaw.y, pitchYaw.x)
 }
 
 fun EntityLivingBase.setDirection(direction: Vector) {
